@@ -1,0 +1,35 @@
+{
+  "name": "thingplug-starter-kit",
+  "version": "0.3.0",
+  "description": "SKT의 ThingPlug Starter Kit",
+  "scripts": {
+    "device": "node device.js",
+    "app": "node application.js"
+  },
+  "keywords": [
+    "skt",
+    "iot",
+    "thingplug",
+    "oneM2M"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enthusapp/lora_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "colors": "^1.1.2",
+    "mqtt": "^1.4.0",
+    "xml2js": "^0.4.10",
+    "express": "^4.2.1",
+    "body-parser": "latest",
+    "async": "latest",
+    "xmlbuilder": "latest",
+    "underscore": "latest"
+  },
+  "engines": {
+    "node": ">=0.10.x"
+  }
+}

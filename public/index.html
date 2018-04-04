@@ -2,15 +2,9 @@
   <head>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="./css/toastr.min.css">
     <link rel="stylesheet" href="./css/color_picker.css">
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/toastr.min.js"></script>
-    <script src="./js/d3.v2.js"></script>
-    <script src="./js/app.js"></script>
     <title>Enthus LoRa Control</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <script>
   </script>
@@ -29,7 +23,7 @@
         </div>
       </nav>
       <div class="container">
-        <h1 class="page-header"> Color Control </h1>
+        <button id="send">Send Color and Media number</button><p id="color_and_media_val"></p>
         <div id="container">
           <div id="palette" class="block">
             <div id="color-palette"></div>
@@ -51,8 +45,8 @@
             <div id="zindex" class="ui-input-slider" data-topic="z-index" data-info="z-index" data-max="20" data-sensivity="10"></div>
           </div>
         </div>
-        <h1 class="page-header"> Media Selector </h1>
       </div><!-- end of container -->
     </body>
     <script src="./js/color_picker.js"></script>
+    <script src="./js/app.js"></script>
   </html>

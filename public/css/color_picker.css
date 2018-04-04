@@ -952,7 +952,7 @@ body {
 	width: 16px;
 	height: 16px;
 	margin: 5px;
-	background: url("images/canvas-controls.png") center left no-repeat;
+	background: url('https://mdn.mozillademos.org/files/6067/canvas-controls.png') center left no-repeat;
 	position: absolute;
 	top: 0;
 	right: 0;

@@ -4,14 +4,6 @@ jQuery(document).ready(function() {
 
   var data = [0];
   /* Graph Related Variables */
-  var color = d3.scale.category10();
-  color.domain(['Sensor']);
-  var series = color.domain().map(function(name){
-    return {
-      name : 'Sensor',
-      values : data
-    };
-  });
   var MAX_DATA = 60;
   var x = null;
   var y = null;
@@ -69,38 +61,19 @@ jQuery(document).ready(function() {
     data.splice(0,0,value);  
   }
 
-  function initToastOptions(){
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-bottom-full-width",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "3000",
-      "hideDuration": "10000",
-      "timeOut": "2000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
-  }
-
-  initToastOptions();
   $('#ac_on_btn').on('click', function(event) {
     $.post('/control', {cmd:'on'}, function(data,status){
-      toastr.success('Aircon On');
-      console.log(data);
-    });
-  });
-  $('#ac_off_btn').on('click', function(event) {
-    $.post('/control', {cmd:'off'}, function(data,status){
-      toastr.info('Aircon Off');
       console.log(data);
     });
   });
 
+  $('#ac_off_btn').on('click', function(event) {
+    $.post('/control', {cmd:'off'}, function(data,status){
+      console.log(data);
+    });
+  });
+
+  $('#send').on('click', () => {
+    console.log($('#color-infoRGBA')[0].value);
+  });
 });

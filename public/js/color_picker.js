@@ -1568,6 +1568,7 @@ var ColorPickerTool = (function ColorPickerTool() {
 			node.className = 'property';
 			title.className = 'type';
 			value.className = 'value';
+			value.id = 'color-info' + info;
 			copy.className = 'copy';
 
 			title.textContent = info;

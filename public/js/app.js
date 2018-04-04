@@ -27,79 +27,6 @@ jQuery(document).ready(function() {
     if(data) container_name = config.containerName;
   });
 
-  function createGraph(id) {
-    color.domain('Sensor');
-    var width = document.getElementById("graph").clientWidth;
-    var height = document.getElementById("graph").clientHeight;
-    var margin = {top: 10, right: 50, bottom: 20, left: 10};
-
-    width = width - margin.left - margin.right;
-    height = height - margin.top - margin.bottom;
-
-    // create the graph object
-    graph = d3.select(id).append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    x = d3.scale.linear()
-      .domain([0, MAX_DATA])
-      .range([width, 0]);
-    y = d3.scale.linear()
-      .domain([
-        d3.min(series, function(l) { return d3.min(l.values, function(v) { return v*0.75; }); }),
-        d3.max(series, function(l) { return d3.max(l.values, function(v) { return v*1.25; }); })
-      ])
-      .range([height, 0]);
-    //add the axes labels
-    graph.append("text")
-        .attr("class", "axis-label")
-        .style("text-anchor", "end")
-        .attr("x", 20)
-        .attr("y", height)
-        .text('Date');
-
-
-
-    line = d3.svg.line()
-      .x(function(d, i) { return x(i); })
-      .y(function(d) { return y(d); });
-
-    xAxis = graph.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.svg.axis().scale(x).orient("bottom"));
-
-    yAxis = graph.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + width + ",0)")
-      .call(d3.svg.axis().scale(y).orient("right"));
-
-    ld = graph.selectAll(".series")
-      .data(series)
-      .enter().append("g")
-      .attr("class", "series");
-
-    // display the line by appending an svg:path element with the data line we created above
-    path = ld.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return color(d.name); });
-  }
-
-  function updateGraph() {
-    // static update without animation
-    y.domain([
-      d3.min(series, function(l) { return d3.min(l.values, function(v) { return v*0.75; }); }),
-      d3.max(series, function(l) { return d3.max(l.values, function(v) { return v*1.25; }); })
-    ]);
-    yAxis.call(d3.svg.axis().scale(y).orient("right"));
-
-    path
-      .attr("d", function(d) { return line(d.values); })
-  }
-
   function getConfig(cb) {
     var url = '/config';
     $.get(url, function(data, status){
@@ -163,14 +90,6 @@ jQuery(document).ready(function() {
   }
 
   initToastOptions();
-  createGraph('#graph'); 
-  setInterval(function(){
-    getData(container_name, function(err,data){
-      insertNewData(data);
-    });
-    displayData();
-    updateGraph();
-  }, 1000);
   $('#ac_on_btn').on('click', function(event) {
     $.post('/control', {cmd:'on'}, function(data,status){
       toastr.success('Aircon On');

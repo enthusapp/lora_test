@@ -1,15 +1,15 @@
 <html>
   <head>
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="./css/toastr.min.css">
-	<script src="./js/jquery.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
-	<script src="./js/toastr.min.js"></script>
-	<script src="./js/d3.v2.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./css/toastr.min.css">
+    <link rel="stylesheet" href="./css/color_picker.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/toastr.min.js"></script>
+    <script src="./js/d3.v2.js"></script>
     <script src="./js/app.js"></script>
-    <title>ThingPlug - Smart Home</title>
+    <title>Enthus LoRa Control</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <script>
@@ -19,38 +19,40 @@
         <div class="container">
           <div class="navbar-header">
             <div class="logo">
-              <img alt="Brand" class="navbar-brand-logo" src="https://www.sp1.sktiot.com/asset/icon/36.png">
+              <li>
+                <a href="http://www.etslight.co.kr/">
+                  <img alt="Brand" class="navbar-brand-logo" src="http://www.etslight.co.kr/images/common/logo.png">
+                </a>
+              </li>
             </div>
           </div>
-          <ul class="nav navbar-nav">
-            <li><a href="http://thingplug.sktiot.com/" class="navbar-right">ThingPlug</a></li>
-          </ul>
         </div>
       </nav>
       <div class="container">
-        <div class="jumbotron">
-          <h2>ThingPlug Starter Kit</h2>
-          <p> Sensor Monitoring and Control Examples</p>
+        <h1 class="page-header"> Color Control </h1>
+        <div id="container">
+          <div id="palette" class="block">
+            <div id="color-palette"></div>
+            <div id="color-info">
+              <div class="title"> CSS Color </div>
+            </div>
+          </div>
+          <div id="picker" class="block">
+            <div class="ui-color-picker" data-topic="picker" data-mode="HSL"></div>
+            <div id="picker-samples" sample-id="master"></div>
+            <div id="controls">
+              <div id="delete">
+                <div id="trash-can"></div>
+              </div>
+              <div id="void-sample" class="icon"></div>
+            </div>
+          </div>
+          <div id="canvas" data-tutorial="drop">
+            <div id="zindex" class="ui-input-slider" data-topic="z-index" data-info="z-index" data-max="20" data-sensivity="10"></div>
+          </div>
         </div>
-        <h1 class="page-header"> Monitoring Indoor Temperature </h1>
-        <div class="row">
-          <div class="col-sm-2"> Temperature </div>
-          <div class="col-sm-1" id="temp_value">0</div>
-          <div class="col-sm-2"> Celcius</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-2"> Time  </div>
-          <div class="col-sm-4" id="temp_time">... </div>
-        </div>
-        <h2 class="page-header"> Control </h2>
-        <div class="control-btn-group">
-          <button type="button" id="ac_on_btn" class="btn btn-primary">On</button>
-          <button type="button" id="ac_off_btn" class="btn btn-default">Off</button>
-        </div>
-        <h2 class="page-header">Sensor Graph (1 sec)</h2>
-        <div class="row">
-          <div id="graph" class="graph"></div>
-        </div>
+        <h1 class="page-header"> Media Selector </h1>
       </div><!-- end of container -->
     </body>
+    <script src="./js/color_picker.js"></script>
   </html>

@@ -74,6 +74,27 @@ jQuery(document).ready(function() {
   });
 
   $('#send').on('click', () => {
-    console.log($('#color-infoRGBA')[0].value);
+    var color_val = $('#color-infoRGBA')[0].value.split(/\(|\)|,+/g);
+    console.log(color_val)
+    var i, tablinks = document.getElementsByClassName("tablinks");
+    var tabName = null;
+    for (i = 0; i < tablinks.length; i++) {
+        if (tablinks[i].classList.contains("active")) {
+          tabName = tablinks[i].textContent;
+        }
+    }
+    if (tabName == "Color Control") {
+      var sd = 'F' + parseInt(color_val[1]).toString(16);
+      sd += parseInt(color_val[2]).toString(16);
+      sd += parseInt(color_val[3]).toString(16) + 'ff';
+      console.log(sd)
+      $.post('/control', {suggest: sd.replace(/\s/g, '')}, function(data,status){
+        console.log(data);
+      });
+    } else if (tabName == "Media Select") {
+      $.post('/control', {suggest: "FFF000000"}, function(data,status){
+        console.log(data);
+      });
+    }
   });
 });

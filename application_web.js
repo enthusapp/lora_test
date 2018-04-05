@@ -35,7 +35,8 @@ app.get('/data/:container', function(req,res) {
 });
 
 app.post('/control', function(req,res) {
-  var cmd = JSON.stringify(req.body);
+  var cmd = req.body['suggest'].substr(1);
+  console.log('send:' + cmd)
   api.reqMgmtCmd(config.nodeRI, config.command, cmd, function(err,data){
     if(err) return res.send({'error':err});
     return res.send({'result':'ok'});

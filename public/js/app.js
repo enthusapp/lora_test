@@ -73,28 +73,33 @@ jQuery(document).ready(function() {
     });
   });
 
-  $('#send').on('click', () => {
+  function colorToString(data) {
+    var val = parseInt(data)
+    if (val < 16) {
+      return '0' + val.toString(16);
+    }
+    return val.toString(16)
+  }
+
+  $('#color-send').on('click', () => {
     var color_val = $('#color-infoRGBA')[0].value.split(/\(|\)|,+/g);
     console.log(color_val)
-    var i, tablinks = document.getElementsByClassName("tablinks");
-    var tabName = null;
-    for (i = 0; i < tablinks.length; i++) {
-        if (tablinks[i].classList.contains("active")) {
-          tabName = tablinks[i].textContent;
-        }
-    }
-    if (tabName == "Color Control") {
-      var sd = 'F' + parseInt(color_val[1]).toString(16);
-      sd += parseInt(color_val[2]).toString(16);
-      sd += parseInt(color_val[3]).toString(16) + 'ff';
-      console.log(sd)
-      $.post('/control', {suggest: sd.replace(/\s/g, '')}, function(data,status){
-        console.log(data);
-      });
-    } else if (tabName == "Media Select") {
-      $.post('/control', {suggest: "FFF000000"}, function(data,status){
-        console.log(data);
-      });
-    }
+    var sd = 'F' + colorToString(color_val[1]);
+    sd += colorToString(color_val[3]);
+    sd += colorToString(color_val[2]) + 'ff';
+    console.log(sd)
+    $.post('/control', {suggest: sd.replace(/\s/g, '')}, function(data,status){
+      console.log(data);
+    });
+  });
+
+  $('#media-send').on('click', () => {
+    var val = $('#media-select  option:selected')[0].value
+    console.log(val)
+    var sd = 'F000000' + colorToString(val);
+    console.log(sd)
+    $.post('/control', {suggest: sd.replace(/\s/g, '')}, function(data,status){
+      console.log(data);
+    });
   });
 });

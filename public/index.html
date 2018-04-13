@@ -53,10 +53,6 @@
         </div>
       </nav>
       <div class="container">
-        <br>
-        <button id="send">Send Control</button>
-        <p id="send_result"></p>
-        <br>
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'Color Control')">Color Control</button>
             <button class="tablinks" onclick="openCity(event, 'Media Select')">Media Select</button>
@@ -66,7 +62,7 @@
             <div id="palette" class="block">
               <div id="color-palette"></div>
               <div id="color-info">
-                <div class="title"> CSS Color </div>
+                <div id="color-send" class="title"> Color Send </div>
               </div>
             </div>
             <div id="picker" class="block">
@@ -85,7 +81,15 @@
           </div>
         </div>
         <div id="Media Select" class="tabbtncontent">
-          <h3>Media Select</h3>
+          <br>
+          <select id="media-select" class="mselect">
+              <option class="mselect" value="" disabled selected>Choose Media</option>
+              <option class="mselect" value="1">Rainbow</option>
+              <option class="mselect" value="2">Movie</option>
+              <option class="mselect" value="3">Advertising</option>
+          </select>
+          <a id="media-send" class="mselect">SEND</a>
+          <br>
         </div>
       </div><!-- end of container -->
     </body>

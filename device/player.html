@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body id="player">
+  </body>
+  <script type="text/javascript">
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    var embed = document.createElement("embed");
+
+    embed.setAttribute("src", getParameterByName('media'));
+    embed.setAttribute("width", "100%");
+    embed.setAttribute("height", "100%");
+
+    document.getElementById("player").appendChild(embed);
+  </script>
+</html>

@@ -5,6 +5,33 @@
 const {ipcRenderer} = require('electron')
 const {dialog} = require('electron').remote
 const _ = require("underscore")
+const socket = require("socket.io-client")('http://localhost:3000');
+
+socket.emit("login", {
+  name: makeRandomName(),
+  userid: "ungmo2@gmail.com"
+});
+
+socket.on("login", function(data) {
+  console.log(data + " has joined");
+});
+
+socket.on("chat", function(data) {
+  console.log(data.msg + " : from " + data.from.name);
+});
+
+$("form").submit(function(e) {
+  socket.emit("chat", { msg: $msgForm.val() });
+});
+
+function makeRandomName(){
+  var name = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+  for( var i = 0; i < 3; i++ ) {
+    name += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return name;
+};
 
 var insertNewSchedule
 var displayScheduleTable
@@ -279,19 +306,25 @@ function displayScheduleTableMaker(history) {
 }
 
 function startScheduler () {
+  /*
   ipcRenderer.send('run', getSchedule())
   console.log('start')
+  */
+  socket.emit("chat", { msg: "test1" });
 }
 
 function stopScheduler () {
+  /*
   ipcRenderer.send('stop')
   console.log('stop')
+  */
+  socket.emit("chat", { msg: "test2" });
 }
 
 function requestSchedulerData () {
   initSchedule(ipcRenderer.sendSync('request_schedule_data'))
 }
-requestSchedulerData()
+//requestSchedulerData()
 
 const changeButton = {
   'run': [{

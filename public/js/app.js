@@ -92,7 +92,18 @@ jQuery(document).ready(function() {
     $.post('/control', {suggest: sd.replace(/\s/g, '')}, function(data,status){
       console.log(data);
     });*/
-    socket.emit("chat", { msg: "test" });
+    socket.emit("chat", { msg: JSON.stringify({
+      command: "paper",
+      data: {
+        'type' : 'rect',
+        'x' : 0,
+        'y' : 0,
+        'width' : 250,
+        'height' : 250,
+        'fill' : '#808080',
+        'stroke-width' : 0
+      }
+    })});
   });
 
   $('#media-send').on('click', () => {
@@ -123,16 +134,6 @@ jQuery(document).ready(function() {
   // 서버로부터의 메시지가 수신되면
   socket.on("chat", function(data) {
     $("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
-  });
-  
-  // Send 버튼이 클릭되면
-  $("form").submit(function(e) {
-    e.preventDefault();
-    var $msgForm = $("#msgForm");
-  
-    // 서버로 메시지를 전송한다.
-    socket.emit("chat", { msg: $msgForm.val() });
-    $msgForm.val("");
   });
   
   function makeRandomName(){

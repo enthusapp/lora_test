@@ -2,27 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Media Facade Player v2.0.0</title>
-    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="renderer.css"/>
+    <title>RGB Test</title>
   </head>
-  <body>
-    <div class='row'>
-      <form class='col s12'>
-        <a class="waves-effect waves-light btn" id='run'></a>
-        <a class="waves-effect waves-light btn" id='add'>새 스케쥴 추가</a>
-        <a class="waves-effect waves-light btn" id='undo'>되돌리기</a>
-      </form>
-    </div>
-    <div>
-      <ul id="schedule-table" class="collapsible expandable">
-      </ul>
+  <body style="margin: 0;padding: 0;overflow: hidden;">
+    <div id="paper" style="height: 400px;width: 800px;"></div>
+    <div style="-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;">
+      <label id="position" style="float: right;color: white">X: 000, Y: 000, 가로: 250, 세로: 250, R: 128, G: 128, B: 128</label>
     </div>
   </body>
-  <script>
-    window.$ = window.jQuery = require('jquery')
-    window.Hammer = require('hammerjs')
-    require("materialize-css")
-    require("./renderer.js")
-  </script>
+  <script type="text/javascript" src="raphael.min.js"></script>
+  <script src="renderer.js"> </script>
 </html>

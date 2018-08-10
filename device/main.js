@@ -5,7 +5,6 @@ const debug = /--debug/.test(process.argv[2])
 const _ = require("underscore")
 
 let mainWindow;
-let el_player;
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin')
@@ -25,9 +24,7 @@ if(process.platform  == 'win32'){
 app.commandLine.appendSwitch('ppapi-flash-path', ppapi_flash_path);
 app.commandLine.appendSwitch('ppapi-flash-version', '18.0.0.203');
 
-
 app.on('ready', function() {
-  /*
   mainWindow = new BrowserWindow({
     'width': 1000,
     'height': 1000,
@@ -37,24 +34,11 @@ app.on('ready', function() {
   //if (debug) {
     mainWindow.webContents.openDevTools()
   //}
-  mainWindow.on('close', () => { app.quit(); })*/
-  console.log(new Date().toISOString() + ': playing start');
-
-  el_player = new BrowserWindow({
-    'width': 700,
-    'height': 400,
-    'webPreferences': {
-      'plugins': true,
-      nodeIntegrationInWorker: true},
-  });
-  el_player.setPosition(0, 0);
-  el_player.loadURL(`file://${__dirname}/player.html?media=rainbow.swf`)
-  el_player.webContents.openDevTools()
+  mainWindow.on('close', () => { app.quit(); })
 });
 
 app.on('before-quit', () => {
-  /*
-  saveDB()*/
+  saveDB()
 })
 
 function playingStop (el) {

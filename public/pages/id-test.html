@@ -385,6 +385,30 @@
                             Basic Form Elements
                         </div>
                         <div class="panel-body">
+                            <div id="paper" style="height: 480px;width: 800px;background-color: black"></div>
+                            <div style="-ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;">
+                                <label>크기조절</label>
+                                <label id="position" style="float: right;">X: 000, Y: 000, 가로: 250, 세로: 250, R: 128, G: 128, B: 128</label>
+                                <div>
+                                    <input type="range" min="1" value="250" max="250" id="rect_size" style="width: 80%;margin-left: 30px">
+                                    <input type="button" value="ID 증가" id="id_up" style="float: right;height: 40px;width: 100px;">
+                                </div>
+                                <div id="color_set">
+                                    <label style="color: red">RED</label>
+                                    <div>
+                                        <input type="range" min="0" value="128" max="255" id="red" style="width: 80%;margin-left: 30px">
+                                        <input type="button" value="ID 감소" id="id_down" style="float: right;height: 40px;width: 100px;">
+                                    </div>
+                                    <label style="color: green">GREEN</label>
+                                    <div>
+                                        <input type="range" min="0" value="128" max="255" id="green" style="width: 80%;margin-left: 30px">
+                                    </div>
+                                    <label style="color: blue">BLUE</label>
+                                    <div>
+                                        <input type="range" min="0" value="128" max="255" id="blue" style="width: 80%;margin-left: 30px">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -410,6 +434,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/raphael.min.js"></script>
+    <script src="../js/id-test.js"></script>
 
 </body>
 

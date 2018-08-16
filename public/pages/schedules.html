@@ -386,15 +386,39 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
+                            Media Test
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <p>
+                                <button id="media-1" type="button" class="btn btn-outline btn-primary">rainbow.swf</button>
+                                <button id="media-2" type="button" class="btn btn-outline btn-primary">posco.swf</button>
+                                <button id="media-3" type="button" class="btn btn-outline btn-primary">spring.swf</button>
+                            </p>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">Add New Schedule</button>
+                            <h4>Select Media</h4>
+                            <p>
+                                <button id="sch-media-1" type="button" class="btn btn-outline btn-primary">rainbow.swf</button>
+                                <button id="sch-media-2" type="button" class="btn btn-outline btn-primary">posco.swf</button>
+                                <button id="sch-media-3" type="button" class="btn btn-outline btn-primary">spring.swf</button>
+                            </p>
+                            <div id="new_sch" class="sch-edit"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -426,14 +450,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/ttl-pug.es6.js"></script>
+    <script src="../js/partial.js"></script>
+    <script src="../js/schedules.js"></script>
 
 </body>
 

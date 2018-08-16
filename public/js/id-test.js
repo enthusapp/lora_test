@@ -333,7 +333,7 @@ function changeCursor(e, mouseX, mouseY) {
 }
 
 // Create drawing area
-var paper = Raphael("paper", 800, 480);
+var paper = Raphael("paper", screen.width > 800 ? 800 : screen.width - 60, 250);
 
 paper.canvas.style.backgroundColor = '#000000';
 

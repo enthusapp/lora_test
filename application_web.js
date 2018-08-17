@@ -30,7 +30,6 @@ fs.readFile('map.txt', (err, data) => {
       });
     }
   });
-  console.log(mdata)
 })
 
 app.set('port', process.env.PORT || 3000);

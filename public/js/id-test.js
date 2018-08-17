@@ -57,7 +57,6 @@ var id_down_button = new IdButton(
 
 $.get('/map', function(data, status){
   if(status == 'success'){
-	console.log(data);
 	mdata = data;
   } else {
     console.log('[Error] /config API return status :' + status);

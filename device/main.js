@@ -26,8 +26,8 @@ app.commandLine.appendSwitch('ppapi-flash-version', '18.0.0.203');
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
-    'width': 1000,
-    'height': 1000,
+    'width': 800,
+    'height': 480,
     'frame': false,
     backgroundColor: '#000000',
     'webPreferences': {'plugins': true}

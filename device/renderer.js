@@ -2,7 +2,7 @@ const socket = require("socket.io-client")('http://localhost:3000');
 const {ipcRenderer} = require('electron')
 
 // Create drawing area
-var paper = Raphael("paper", 800, 480);
+var paper = Raphael("paper", 800, 450);
 
 paper.canvas.style.backgroundColor = '#000000';
 

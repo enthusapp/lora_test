@@ -28,6 +28,8 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     'width': 1000,
     'height': 1000,
+    'frame': false,
+    backgroundColor: '#000000',
     'webPreferences': {'plugins': true}
   });
   mainWindow.loadURL(`file://${__dirname}/index.html`)

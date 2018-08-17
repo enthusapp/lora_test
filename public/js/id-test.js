@@ -354,24 +354,11 @@ shapes[0].mousemove(changeCursor);
 // Attach "Drag" handlers to rectangle
 shapes[0].drag(dragMove, dragStart, dragEnd);
 
-// socket.io 서버에 접속한다
 var socket = io();
 
-// 서버로 자신의 정보를 전송한다.
 socket.emit("login", {
-  // name: "ungmo2",
   name: makeRandomName(),
   userid: "ungmo2@gmail.com"
-});
-
-// 서버로부터의 메시지가 수신되면
-socket.on("login", function(data) {
-  $("#chatLogs").append("<div><strong>" + data + "</strong> has joined</div>");
-});
-
-// 서버로부터의 메시지가 수신되면
-socket.on("chat", function(data) {
-  $("#chatLogs").append("<div>" + data.msg + " : from <strong>" + data.from.name + "</strong></div>");
 });
 
 function makeRandomName(){

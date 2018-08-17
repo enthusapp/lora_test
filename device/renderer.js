@@ -1,4 +1,5 @@
 const socket = require("socket.io-client")('http://localhost:3000');
+const {ipcRenderer} = require('electron')
 
 // Create drawing area
 var paper = Raphael("paper", 800, 480);
@@ -19,14 +20,20 @@ var paper_shapes = []
 socket.on("chat", function(data) {
   var command = JSON.parse(data.msg);
   console.log(command);
-  if (command.command === 'paper') {
-    if (paper_shapes[command.id] === void 0) {
-      paper_shapes = paper.add([command.data]);
-    } else {
-      Object.keys(command.data).forEach(key => {
-        paper_shapes[command.id].attr(key, command.data[key]);
-      })
-    }
+  switch (command.command) {
+    case 'paper':
+      if (paper_shapes[command.id] === void 0) {
+        paper_shapes = paper.add([command.data]);
+      } else {
+        Object.keys(command.data).forEach(key => {
+          paper_shapes[command.id].attr(key, command.data[key]);
+        })
+      }
+    break;
+    case 'run':
+      ipcRenderer.sendSync('stop')
+      ipcRenderer.send('run', [command.data])
+    break;
   }
 });
 

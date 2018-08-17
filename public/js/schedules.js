@@ -29,3 +29,37 @@ let schedule_template = () => pug`
         )}`;
 
 $(".sch-edit").append(schedule_template());
+
+var socket = io();
+
+socket.emit("login", {
+  name: makeRandomName(),
+  userid: "ungmo2@gmail.com"
+});
+
+function makeRandomName(){
+  var name = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+  for( var i = 0; i < 3; i++ ) {
+    name += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return name;
+};
+
+$(".sch-media").on("click", ev => {
+  socket.emit("chat", { msg: JSON.stringify({
+	command: "run",
+    data: {
+      media: ev.target.innerText,
+      height: 200,
+      width: 400,
+      x: 0,
+      y: 0,
+      enable: 1,
+      month: Array(12).fill(1),
+      hour: Array(24).fill(1),
+      day: Array(7).fill(1),
+      minute: Array(60).fill(1)
+    }
+  })});
+})

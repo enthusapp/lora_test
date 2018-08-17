@@ -22,6 +22,7 @@ socket.on("chat", function(data) {
   console.log(command);
   switch (command.command) {
     case 'paper':
+      ipcRenderer.send('stop')
       if (paper_shapes[command.id] === void 0) {
         paper_shapes = paper.add([command.data]);
       } else {
@@ -31,8 +32,12 @@ socket.on("chat", function(data) {
       }
     break;
     case 'run':
-      ipcRenderer.sendSync('stop')
-      ipcRenderer.send('run', [command.data])
+      paper_shapes.forEach(shape => {
+        shape.remove();
+      });
+      paper_shapes = [];
+      ipcRenderer.sendSync('stop');
+      ipcRenderer.send('run', [command.data]);
     break;
   }
 });

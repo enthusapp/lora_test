@@ -5,17 +5,45 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+const fs = require("fs")
 
 var config = require('./config');
 var api = require('./lib/api');
+
+var mdata = [];
+
+fs.readFile('map.txt', (err, data) => {
+  if (err) {
+      return;
+  }
+  mdata = [];
+  var device = 1;
+  data.toString().match(/[^\r\n]+/g).forEach(el => {
+    if (el.match('FPGA')) {
+      device++;
+    } else {
+      var es = el.split('"');
+      mdata.push({
+        x: parseInt(es[1], 2) - 1,
+        y: parseInt(es[3], 2) - 1,
+        id: device.toString() + '-' + (parseInt(es[5], 2) + 1).toString()
+      });
+    }
+  });
+  console.log(mdata)
+})
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req,res){
+app.get('/', function(req, res){
   res.redirect('index.html');
+});
+
+app.get('/map', function(req, res) {
+  res.send(mdata);
 });
 
 app.get('/config', function(req,res) {

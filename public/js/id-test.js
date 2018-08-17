@@ -1,30 +1,5 @@
-/*
-const fs = require("fs")
-const remote = require("electron").remote;
-
 var mdata = [];
 var mdata_idx = 0;
-
-fs.readFile('map.txt', (err, data) => {
-  if (err) {
-      return;
-  }
-  mdata = [];
-  var device = 1;
-  data.toString().match(/[^\r\n]+/g).forEach(el => {
-    if (el.match('FPGA')) {
-      device++;
-    } else {
-      var es = el.split('"');
-      mdata.push({
-        x: parseInt(es[1], 2) - 1,
-        y: parseInt(es[3], 2) - 1,
-        id: device.toString() + '-' + (parseInt(es[5], 2) + 1).toString()
-      });
-    }
-  });
-  console.log(mdata)
-})
 
 class IdButton {
 	constructor(el, calculator) {
@@ -79,7 +54,15 @@ var id_down_button = new IdButton(
 	document.getElementById('id_down'),
 	() => {mdata_idx = mdata_idx ? --mdata_idx : mdata.length - 1;}
 )
-*/
+
+$.get('/map', function(data, status){
+  if(status == 'success'){
+	console.log(data);
+	mdata = data;
+  } else {
+    console.log('[Error] /config API return status :' + status);
+  }
+});
 
 var position = {
 	x: 0,

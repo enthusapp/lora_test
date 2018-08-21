@@ -16,13 +16,15 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://127.0.0.1:4040/api/tunnels');
 xhr.send();
 
+var ngrok_url = ""
+
 xhr.onreadystatechange = function () {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-      console.log(data.tunnels[0].public_url);
+      ngrok_url = JSON.parse(xhr.responseText);
+      console.log(ngrok_url.tunnels[0].public_url);
       document.getElementById('info').innerText =
-        "Enthus Media Facade Player v1.0 " + data.tunnels[0].public_url;
+        document.getElementById('info').innerText + " " + ngrok_url.tunnels[0].public_url;
 
     } else {
       console.log('[' + xhr.status + ']: ' + xhr.statusText);
@@ -37,6 +39,8 @@ socket.emit("login", {
 
 socket.on("login", function(data) {
   console.log(data + " has joined");
+  document.getElementById('info').innerText =
+    document.getElementById('info').innerText + " joined";
 });
 
 var paper_shapes = []

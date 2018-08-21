@@ -21,7 +21,8 @@ xhr.onreadystatechange = function () {
     if (xhr.status === 200) {
       var data = JSON.parse(xhr.responseText);
       console.log(data.tunnels[0].public_url);
-      document.getElementById('info').innerText = data.tunnels[0].public_url;
+      document.getElementById('info').innerText =
+        "Enthus Media Facade Player v1.0 " + data.tunnels[0].public_url;
 
     } else {
       console.log('[' + xhr.status + ']: ' + xhr.statusText);

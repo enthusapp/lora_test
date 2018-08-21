@@ -1,4 +1,10 @@
-const socket = require("socket.io-client")('http://localhost:3000');
+const socket = require("socket.io-client")('http://localhost:3000', {
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax : 5000,
+  reconnectionAttempts: Infinity
+});
+
 const {ipcRenderer} = require('electron')
 
 // Create drawing area

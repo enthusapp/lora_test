@@ -19,8 +19,9 @@ xhr.send();
 xhr.onreadystatechange = function () {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
-      console.log(xhr.responseText);
-      document.getElementById('info').innerHTML = xhr.responseText;
+      var data = JSON.parse(xhr.responseText);
+      console.log(data.tunnels[0].public_url);
+      document.getElementById('info').innerText = data.tunnels[0].public_url;
 
     } else {
       console.log('[' + xhr.status + ']: ' + xhr.statusText);

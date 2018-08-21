@@ -24,8 +24,8 @@ fs.readFile('map.txt', (err, data) => {
     } else {
       var es = el.split('"');
       mdata.push({
-        x: parseInt(es[1], 2) - 1,
-        y: parseInt(es[3], 2) - 1,
+        x: parseInt(es[3], 2) - 1,
+        y: parseInt(es[1], 2) - 1,
         id: device.toString() + '-' + (parseInt(es[5], 2) + 1).toString()
       });
     }

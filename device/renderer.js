@@ -12,6 +12,22 @@ var paper = Raphael("paper", 800, 450);
 
 paper.canvas.style.backgroundColor = '#000000';
 
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://127.0.0.1:4040/api/tunnels');
+xhr.send();
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      document.getElementById('info').innerHTML = xhr.responseText;
+
+    } else {
+      console.log('[' + xhr.status + ']: ' + xhr.statusText);
+    }
+  }
+};
+
 socket.emit("login", {
   name: makeRandomName(),
   userid: "ungmo2@gmail.com"
